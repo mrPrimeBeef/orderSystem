@@ -3,6 +3,8 @@ package app.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,5 +22,5 @@ public class Orderr {
     private Customer customer;
 
     @OneToMany
-    private OrderLine orderLine;
+    private Set<OrderLine> orderLines = new HashSet<>();
 }

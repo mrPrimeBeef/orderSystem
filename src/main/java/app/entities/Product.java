@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class Product {
-
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
@@ -16,5 +15,8 @@ public class Product {
     private String name;
     private String description;
     private double price;
+
+//    @OneToMany
+//    private Set<OrderLine< orderLines;
 
 }
