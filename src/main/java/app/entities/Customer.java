@@ -19,6 +19,7 @@ public class Customer {
     private String email;
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "customer_id")
     private Set<Orderr> orders = new HashSet<>();
 
     public Customer(String name, String email) {

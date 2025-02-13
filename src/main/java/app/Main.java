@@ -16,9 +16,7 @@ public class Main {
             em.getTransaction().begin();
             em.persist(new Customer("John Doe", "john@doe.com"));
             em.getTransaction().commit();
-
         }
-
         emf.close();
     }
 }

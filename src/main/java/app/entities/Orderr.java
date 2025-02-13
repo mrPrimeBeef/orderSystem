@@ -21,6 +21,7 @@ public class Orderr {
     @ManyToOne
     private Customer customer;
 
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "order_id")
     private Set<OrderLine> orderLines = new HashSet<>();
 }

@@ -14,9 +14,6 @@ public class OrderLine {
     private int id;
     private int quantity;
 
-    @ManyToOne
-    private Orderr order;
-
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Product product;
 }
