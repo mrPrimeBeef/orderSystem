@@ -1,7 +1,7 @@
 package app.config;
 
 import app.entities.Customer;
-import app.entities.Order;
+import app.entities.Orderr;
 import app.entities.OrderLine;
 import app.entities.Product;
 import app.utils.Utils;
@@ -44,7 +44,7 @@ public class HibernateConfig {
     // TODO: IMPORTANT: Add Entity classes here for them to be registered with Hibernate
     private static void getAnnotationConfiguration(Configuration configuration) {
         configuration.addAnnotatedClass(Customer.class);
-        configuration.addAnnotatedClass(Order.class);
+        configuration.addAnnotatedClass(Orderr.class);
         configuration.addAnnotatedClass(OrderLine.class);
         configuration.addAnnotatedClass(Product.class);
 
