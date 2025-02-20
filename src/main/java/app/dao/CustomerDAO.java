@@ -29,10 +29,5 @@ public class CustomerDAO extends AbstractDAO<Customer, Integer> {
             query.setParameter("id",id);
             return query.getResultList();
         }
-
-//        try(EntityManager em = emf.createEntityManager()) {
-//            return em.createQuery("SELECT l FROM Location l", Location.class).getResultList();
-//        }
-
     }
 }
