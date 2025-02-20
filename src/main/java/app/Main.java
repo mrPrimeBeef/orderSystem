@@ -1,22 +1,23 @@
 package app;
 
 import app.config.HibernateConfig;
+import app.dao.CustomerDAO;
+import app.dao.ProductDAO;
 import app.entities.Customer;
+import app.utils.Populator;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
 public class Main {
-
     public static void main(String[] args) {
-
         EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
+        CustomerDAO customerDAO = CustomerDAO.getInstance(emf);
+        ProductDAO productDAO = ProductDAO.getInstance(emf);
 
-        try (EntityManager em = emf.createEntityManager()) {
+        Populator pop = new Populator();
+        pop.populate();
 
-            em.getTransaction().begin();
-            em.persist(new Customer("John Doe", "john@doe.com"));
-            em.getTransaction().commit();
-        }
-        emf.close();
+        System.out.println(customerDAO.findAllOrdersByCustId(1));
+
     }
 }

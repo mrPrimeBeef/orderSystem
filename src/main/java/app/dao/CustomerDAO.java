@@ -1,55 +1,38 @@
 package app.dao;
 
 import app.entities.Customer;
+import app.entities.Orderr;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
-public class CustomerDAO implements IDAO<Customer, Integer> {
+public class CustomerDAO extends AbstractDAO<Customer, Integer> {
     private static CustomerDAO instance;
-    private static EntityManagerFactory emf;
-
 
     private CustomerDAO(EntityManagerFactory emf) {
-        this.emf = emf;
+        super(Customer.class, emf);
     }
 
-    public CustomerDAO getInstance(EntityManagerFactory emf) {
+    public static CustomerDAO getInstance(EntityManagerFactory emf) {
         if (instance == null) {
-            CustomerDAO instance = new CustomerDAO(emf);
+            instance = new CustomerDAO(emf);
         }
         return instance;
     }
 
-
-    @Override
-    public Customer create(Customer customer) {
-        try (EntityManager em = emf.createEntityManager()) {
-            em.getTransaction().begin();
-            em.persist(customer);
-            em.getTransaction().commit();
-            return customer;
+    public List<Orderr> findAllOrdersByCustId(int id){
+        try(EntityManager em = emf.createEntityManager()){
+            String jpql = "SELECT o FROM Orderr o WHERE id=:id";
+            TypedQuery query = em.createQuery(jpql,Orderr.class);
+            query.setParameter("id",id);
+            return query.getResultList();
         }
-    }
 
-    @Override
-    public Customer read(Integer integer) {
-        return null;
-    }
-
-    @Override
-    public List<Customer> readAll() {
-        return List.of();
-    }
-
-    @Override
-    public Customer update(Customer customer) {
-        return null;
-    }
-
-    @Override
-    public void delete(Integer integer) {
+//        try(EntityManager em = emf.createEntityManager()) {
+//            return em.createQuery("SELECT l FROM Location l", Location.class).getResultList();
+//        }
 
     }
 }

@@ -1,9 +1,13 @@
 package app.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@Builder
 @Getter
 @NoArgsConstructor
 @Entity
@@ -16,4 +20,6 @@ public class OrderLine {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Product product;
+
+
 }
